@@ -1,49 +1,50 @@
 <?php
 
-// Demand a GET parameter
-if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1  ) {
-    die('Name parameter missing');
-}
+    if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1  ) {
+        die('Name parameter missing');
+    }
 
-// If the user requested logout go back to index.php
-if ( isset($_POST['logout']) ) {
-    header('Location: index.php');
-    return;
-}
+    if ( isset($_POST['logout']) ) {
+        header('Location: index.php');
+        return;
+    }
 
-// Set up the values for the game...
-// 0 is Rock, 1 is Paper, and 2 is Scissors
-$names = array('Rock', 'Paper', 'Scissors');
-$human = isset($_POST["human"]) ? $_POST['human']+0 : -1;
+    // 0 is Rock, 1 is Paper, and 2 is Scissors
+    $names = array('Rock', 'Paper', 'Scissors');
+    $human = isset($_POST["human"]) ? $_POST['human']+0 : -1;
+    $computer = rand(0,2);
 
-$computer = 0; // Hard code the computer to rock
-// TODO: Make the computer be random
-// $computer = rand(0,2);
-
-// This function takes as its input the computer and human play
-// and returns "Tie", "You Lose", "You Win" depending on play
-// where "You" is the human being addressed by the computer
-function check($computer, $human) {
-    // For now this is a rock-savant checking function
-    // TODO: Fix this
-    if ( $human == 0 ) {
+    // This function takes as its input the computer and human play
+    // and returns "Tie", "You Lose", "You Win" depending on play
+    // where "You" is the human being addressed by the computer
+    function check($computer, $human) {
+        // For now this is a rock-savant checking function
+        // TODO: Fix this
+    if ($human == $computer){
         return "Tie";
-    } else if ( $human == 1 ) {
-        return "You Win";
-    } else if ( $human == 2 ) {
+    } elseif($human == 0 && $computer == 1){
         return "You Lose";
+    } elseif($human == 0 && $computer == 2){
+        return "You Win";
+    } elseif($human == 1 && $computer == 0){
+        return "You Win";
+    } elseif($human == 1 && $computer == 2){
+        return "You Lose";
+    } elseif($human == 2 && $computer == 0){
+        return "You Lose";
+    } elseif($human == 2 && $computer == 1){
+        return "You Win";
     }
     return false;
-}
+    }
 
-// Check to see how the play happenned
-$result = check($computer, $human);
+    $result = check($computer, $human);
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dr. Chuck's Rock, Paper, Scissors Game</title>
+<title>Daniel Arias' Rock, Paper, Scissors Game fbe6adc9</title>
 <?php require_once "bootstrap.php"; ?>
 </head>
 <body>
