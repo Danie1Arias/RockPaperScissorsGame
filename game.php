@@ -20,6 +20,7 @@
     function check($computer, $human) {
         // For now this is a rock-savant checking function
         // TODO: Fix this
+    /*
     if ($human == $computer){
         return "Tie";
     } elseif($human == 0 && $computer == 1){
@@ -37,7 +38,34 @@
     }
     return false;
     }
+    */
 
+    $game = $human . $computer;
+    
+    switch ($game) {
+        case "01":
+            return "You Lose";
+            break;
+        case "02":
+            return "You Win";
+            break;
+        case "10":
+            return "You Win";
+            break;
+        case "12":
+            return "You Lose";
+            break;
+        case "20":
+            return "You Lose";
+            break;
+        case "21":
+            return "You Win";
+            break;
+        default:
+            return "Tie";
+    }
+    
+    }
     $result = check($computer, $human);
 
 ?>
